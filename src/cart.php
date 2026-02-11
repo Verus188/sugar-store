@@ -59,6 +59,9 @@
             const data = await response.json();
             const container = document.getElementById('cart-items');
             const totalSpan = document.getElementById('total-price');
+            const cartCount = document.getElementById('cart-count');
+            
+            if (cartCount) cartCount.innerText = data.cart.length;
             
             container.innerHTML = '';
             let total = 0;
@@ -73,6 +76,7 @@
                     div.style.flexDirection = 'row';
                     div.style.justifyContent = 'space-between';
                     div.style.marginBottom = '20px';
+                    div.style.alignItems = 'center';
                     div.innerHTML = `
                         <div style="display:flex; align-items:center; gap: 20px;">
                             <img src="${item.image}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 5px;">
@@ -81,11 +85,31 @@
                                 <span class="price">${item.price}</span>
                             </div>
                         </div>
+                        <button class="btn-remove" data-index="${index}" style="background: #ff6f91; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Удалить</button>
                     `;
                     container.appendChild(div);
                 });
+                
+                // Attach event listeners to new buttons
+                document.querySelectorAll('.btn-remove').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        removeFromCart(this.getAttribute('data-index'));
+                    });
+                });
             }
             totalSpan.innerText = total;
+        }
+
+        async function removeFromCart(index) {
+             const response = await fetch('cart_action.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'remove', index: index })
+             });
+             const data = await response.json();
+             if (data.success) {
+                 loadCart();
+             }
         }
 
         document.getElementById('checkout-btn').addEventListener('click', () => {
