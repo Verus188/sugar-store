@@ -2,9 +2,9 @@
   "name": "sugar-store",
   "version": "1.0.0",
   "description": "Сайт Клуб любителей сладостей",
-  "main": "index.php",
+  "main": "src/index.php",
   "scripts": {
-    "start": "php -S localhost:8000"
+    "start": "php -S localhost:8000 -t src"
   },
   "author": "",
   "license": "ISC"
