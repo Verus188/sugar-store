@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -14,9 +15,15 @@
                 <ul>
                     <li><a href="#about">О нас</a></li>
                     <li><a href="#team">Наша команда</a></li>
-                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="catalog.php">Каталог</a></li>
+                    <li><a href="cart.php">Корзина (<span id="cart-count"><?= isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0 ?></span>)</a></li>
                     <li><a href="#location">Где нас найти?</a></li>
-                    <li><a href="login.html" class="btn-login">Вход в аккаунт</a></li>
+                    <?php if(isset($_SESSION['user_id'])): ?>
+                        <li><a href="#" class="btn-login"><?= htmlspecialchars($_SESSION['user_name']) ?></a></li>
+                        <li><form action="auth.php" method="POST" style="display:inline;"><input type="hidden" name="action" value="logout"><button type="submit" style="background:none;border:none;cursor:pointer;color:inherit;font-weight:500;">Выйти</button></form></li>
+                    <?php else: ?>
+                        <li><a href="login.php" class="btn-login">Вход в аккаунт</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
         </div>
@@ -27,7 +34,7 @@
             <div class="container">
                 <h2>Добро пожаловать в сладкий рай!</h2>
                 <p>Самые вкусные торты, пирожные и конфеты ручной работы.</p>
-                <a href="catalog.html" class="btn-primary">Смотреть каталог</a>
+                <a href="catalog.php" class="btn-primary">Смотреть каталог</a>
             </div>
         </section>
 

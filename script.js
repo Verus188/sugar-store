@@ -15,12 +15,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Buy button interaction
+    // Buy button interaction (AJAX to PHP)
     const buyButtons = document.querySelectorAll('.btn-buy');
     buyButtons.forEach(btn => {
         btn.addEventListener('click', function() {
-            const productName = this.parentElement.querySelector('h3').innerText;
-            alert(`Вы добавили "${productName}" в корзину!`);
+            const name = this.getAttribute('data-name');
+            const price = this.getAttribute('data-price');
+            const image = this.getAttribute('data-image');
+
+            fetch('cart_action.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    action: 'add',
+                    name: name,
+                    price: price,
+                    image: image
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(`"${name}" добавлен в корзину!`);
+                    // Update cart count in header if element exists
+                    const countEl = document.getElementById('cart-count');
+                    if (countEl) countEl.innerText = data.count;
+                }
+            });
         });
     });
 
@@ -43,15 +66,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Auth Forms Submission
+    // Auth Forms Submission (AJAX to PHP)
     const authForms = document.querySelectorAll('.auth-form');
     authForms.forEach(form => {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            const isLogin = form.id === 'login-form';
-            const message = isLogin ? 'Вы успешно вошли!' : 'Регистрация прошла успешно!';
-            alert(message);
-            window.location.href = 'index.html';
+            const formData = new FormData(form);
+
+            fetch('auth.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                if (data.success) {
+                    if (form.id === 'login-form') {
+                        window.location.href = 'index.php';
+                    } else {
+                        // After register, switch to login tab
+                        document.querySelector('[data-target="login-form"]').click();
+                    }
+                }
+            })
+            .catch(error => console.error('Error:', error));
         });
     });
 });

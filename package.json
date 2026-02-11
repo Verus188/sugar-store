@@ -1,0 +1,11 @@
+{
+  "name": "sugar-store",
+  "version": "1.0.0",
+  "description": "Сайт Клуб любителей сладостей",
+  "main": "index.php",
+  "scripts": {
+    "start": "php -S localhost:8000"
+  },
+  "author": "",
+  "license": "ISC"
+}

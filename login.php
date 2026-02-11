@@ -1,3 +1,9 @@
+<?php session_start(); 
+if (isset($_SESSION['user_id'])) {
+    header('Location: index.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -9,13 +15,14 @@
 <body>
     <header>
         <div class="container header-content">
-            <h1 class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">Клуб любителей сладостей</a></h1>
+            <h1 class="logo"><a href="index.php" style="text-decoration: none; color: inherit;">Клуб любителей сладостей</a></h1>
             <nav>
                 <ul>
-                    <li><a href="index.html#about">О нас</a></li>
-                    <li><a href="catalog.html">Каталог</a></li>
-                    <li><a href="index.html#location">Где нас найти?</a></li>
-                    <li><a href="login.html" class="btn-login">Вход в аккаунт</a></li>
+                    <li><a href="index.php#about">О нас</a></li>
+                    <li><a href="catalog.php">Каталог</a></li>
+                    <li><a href="cart.php">Корзина (<span id="cart-count"><?= isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0 ?></span>)</a></li>
+                    <li><a href="index.php#location">Где нас найти?</a></li>
+                    <li><a href="login.php" class="btn-login">Вход в аккаунт</a></li>
                 </ul>
             </nav>
         </div>
@@ -34,12 +41,13 @@
                         <h2>С возвращением!</h2>
                         <div class="form-group">
                             <label for="login-email">Email</label>
-                            <input type="email" id="login-email" placeholder="example@mail.ru" required>
+                            <input type="email" id="login-email" name="email" placeholder="example@mail.ru" required>
                         </div>
                         <div class="form-group">
                             <label for="login-password">Пароль</label>
-                            <input type="password" id="login-password" placeholder="********" required>
+                            <input type="password" id="login-password" name="password" placeholder="********" required>
                         </div>
+                        <input type="hidden" name="action" value="login">
                         <button type="submit" class="btn-primary full-width">Войти</button>
                     </form>
 
@@ -47,16 +55,17 @@
                         <h2>Создать аккаунт</h2>
                         <div class="form-group">
                             <label for="reg-name">Имя</label>
-                            <input type="text" id="reg-name" placeholder="Иван" required>
+                            <input type="text" id="reg-name" name="name" placeholder="Иван" required>
                         </div>
                         <div class="form-group">
                             <label for="reg-email">Email</label>
-                            <input type="email" id="reg-email" placeholder="example@mail.ru" required>
+                            <input type="email" id="reg-email" name="email" placeholder="example@mail.ru" required>
                         </div>
                         <div class="form-group">
                             <label for="reg-password">Пароль</label>
-                            <input type="password" id="reg-password" placeholder="********" required>
+                            <input type="password" id="reg-password" name="password" placeholder="********" required>
                         </div>
+                        <input type="hidden" name="action" value="register">
                         <button type="submit" class="btn-primary full-width">Зарегистрироваться</button>
                     </form>
                 </div>
