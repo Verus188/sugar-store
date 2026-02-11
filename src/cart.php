@@ -32,7 +32,7 @@
             <div class="container">
                 <h2>Ваша корзина</h2>
                 <div id="cart-items" class="cart-container">
-                    <!-- Товары будут загружены через JS -->
+                    <!-- Сюда JS будет вставлять товары -->
                     <p>Загрузка корзины...</p>
                 </div>
                 <div class="cart-total" style="margin-top: 30px; font-size: 1.5rem; font-weight: bold;">
@@ -51,32 +51,40 @@
 
     <script src="script.js"></script>
     <script>
-        // Inline script for cart specific logic
+        // Скрипт чисто для этой страницы (чтобы не захламлять общий файл)
         document.addEventListener('DOMContentLoaded', loadCart);
 
+        // Функция загрузки корзины с сервера
         async function loadCart() {
+            // Спрашиваем у PHP: "Что там в корзине?"
             const response = await fetch('cart_action.php?action=get');
             const data = await response.json();
+            
             const container = document.getElementById('cart-items');
             const totalSpan = document.getElementById('total-price');
             const cartCount = document.getElementById('cart-count');
             
+            // Сразу обновляем цифру в меню, чтобы было красиво
             if (cartCount) cartCount.innerText = data.cart.length;
             
+            // Чистим контейнер перед перерисовкой
             container.innerHTML = '';
             let total = 0;
 
             if (data.cart.length === 0) {
                 container.innerHTML = '<p>Корзина пуста. <a href="catalog.php">Перейти в каталог</a></p>';
             } else {
+                // Бежим по товарам и создаем HTML для каждого
                 data.cart.forEach((item, index) => {
-                    total += parseInt(item.price);
+                    total += parseInt(item.price); // Считаем сумму
                     const div = document.createElement('div');
-                    div.className = 'product-card'; // Reuse style
+                    div.className = 'product-card'; // Используем те же стили, что и в каталоге
                     div.style.flexDirection = 'row';
                     div.style.justifyContent = 'space-between';
                     div.style.marginBottom = '20px';
                     div.style.alignItems = 'center';
+                    
+                    // Вставляем картинку, текст и кнопку удаления
                     div.innerHTML = `
                         <div style="display:flex; align-items:center; gap: 20px;">
                             <img src="${item.image}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 5px;">
@@ -90,9 +98,10 @@
                     container.appendChild(div);
                 });
                 
-                // Attach event listeners to new buttons
+                // Вешаем события на кнопки "Удалить"
                 document.querySelectorAll('.btn-remove').forEach(btn => {
                     btn.addEventListener('click', function() {
+                        // Передаем индекс товара в функцию удаления
                         removeFromCart(this.getAttribute('data-index'));
                     });
                 });
@@ -100,6 +109,7 @@
             totalSpan.innerText = total;
         }
 
+        // Функция удаления товара
         async function removeFromCart(index) {
              const response = await fetch('cart_action.php', {
                 method: 'POST',
@@ -108,10 +118,11 @@
              });
              const data = await response.json();
              if (data.success) {
-                 loadCart();
+                 loadCart(); // Перерисовываем корзину, чтобы товар исчез визуально
              }
         }
 
+        // Оформление заказа (пока просто очистка)
         document.getElementById('checkout-btn').addEventListener('click', () => {
              alert('Заказ оформлен! (Демо)');
              fetch('cart_action.php', {
