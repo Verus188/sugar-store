@@ -75,6 +75,7 @@ nav a:hover {
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s;
+    display: inline-block; /* Added for <a> tag support */
 }
 
 .btn-login:hover {
@@ -104,6 +105,7 @@ nav a:hover {
     font-weight: bold;
     margin-top: 20px;
     transition: transform 0.2s;
+    border: 2px solid var(--white); /* Ensure border consistency */
 }
 
 .btn-primary:hover {
@@ -200,6 +202,87 @@ footer {
 address {
     font-style: normal;
     line-height: 1.8;
+}
+
+/* Auth Pages */
+.auth-container {
+    max-width: 400px;
+    margin: 0 auto;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.auth-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 10px;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #888;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.auth-tab.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    margin-bottom: -2px;
+}
+
+.auth-form {
+    display: none;
+    text-align: left;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+.auth-form h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.full-width {
+    width: 100%;
+    margin-top: 10px;
+    background-color: var(--primary-color); /* Ensure visibility */
+    color: var(--white);
+    border: none;
+    cursor: pointer;
 }
 
 /* Responsive adjustments */

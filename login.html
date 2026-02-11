@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход и Регистрация - Клуб любителей сладостей</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1 class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">Клуб любителей сладостей</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html#about">О нас</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="index.html#location">Где нас найти?</a></li>
+                    <li><a href="login.html" class="btn-login">Вход в аккаунт</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="auth-container">
+                    <div class="auth-tabs">
+                        <button class="auth-tab active" data-target="login-form">Вход</button>
+                        <button class="auth-tab" data-target="register-form">Регистрация</button>
+                    </div>
+
+                    <form id="login-form" class="auth-form active">
+                        <h2>С возвращением!</h2>
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" placeholder="example@mail.ru" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Пароль</label>
+                            <input type="password" id="login-password" placeholder="********" required>
+                        </div>
+                        <button type="submit" class="btn-primary full-width">Войти</button>
+                    </form>
+
+                    <form id="register-form" class="auth-form">
+                        <h2>Создать аккаунт</h2>
+                        <div class="form-group">
+                            <label for="reg-name">Имя</label>
+                            <input type="text" id="reg-name" placeholder="Иван" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-email">Email</label>
+                            <input type="email" id="reg-email" placeholder="example@mail.ru" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-password">Пароль</label>
+                            <input type="password" id="reg-password" placeholder="********" required>
+                        </div>
+                        <button type="submit" class="btn-primary full-width">Зарегистрироваться</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Клуб любителей сладостей. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
