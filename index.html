@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Клуб любителей сладостей</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1 class="logo">Клуб любителей сладостей</h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#catalog">Каталог</a></li>
+                    <li><a href="#location">Где нас найти?</a></li>
+                    <li><button id="login-btn" class="btn-login">Вход в аккаунт</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <h2>Добро пожаловать в сладкий рай!</h2>
+                <p>Самые вкусные торты, пирожные и конфеты ручной работы.</p>
+                <a href="#catalog" class="btn-primary">Смотреть каталог</a>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2>О нас</h2>
+                <p>Мы — команда энтузиастов, которые не представляют жизнь без сладкого. С 2010 года мы радуем наших клиентов уникальными десертами, созданными с любовью и только из натуральных ингредиентов.</p>
+            </div>
+        </section>
+
+        <section id="catalog" class="section bg-alt">
+            <div class="container">
+                <h2>Каталог</h2>
+                <div class="catalog-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <div class="product-image" style="background-color: #ffcccb;">🧁</div>
+                        <h3>Нежный Капкейк</h3>
+                        <p>Ванильный бисквит с клубничным кремом.</p>
+                        <span class="price">150 ₽</span>
+                        <button class="btn-buy">Купить</button>
+                    </div>
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <div class="product-image" style="background-color: #ffd700;">🍩</div>
+                        <h3>Пончик "Глазурь"</h3>
+                        <p>Классический пончик с розовой глазурью.</p>
+                        <span class="price">100 ₽</span>
+                        <button class="btn-buy">Купить</button>
+                    </div>
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <div class="product-image" style="background-color: #87ceeb;">🍰</div>
+                        <h3>Чизкейк Нью-Йорк</h3>
+                        <p>Классический сливочный вкус.</p>
+                        <span class="price">250 ₽</span>
+                        <button class="btn-buy">Купить</button>
+                    </div>
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <div class="product-image" style="background-color: #98fb98;">🍪</div>
+                        <h3>Печенье Макарон</h3>
+                        <p>Набор из 5 штук разных вкусов.</p>
+                        <span class="price">400 ₽</span>
+                        <button class="btn-buy">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="location" class="section">
+            <div class="container">
+                <h2>Где нас найти?</h2>
+                <p>Мы находимся в самом центре города.</p>
+                <address>
+                    г. Москва, ул. Сладкая, д. 15<br>
+                    Телефон: +7 (999) 000-00-00<br>
+                    Email: info@sweets-club.ru
+                </address>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Клуб любителей сладостей. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
