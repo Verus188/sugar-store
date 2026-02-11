@@ -283,6 +283,82 @@ address {
     cursor: pointer;
 }
 
+/* About & Team */
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    text-align: left;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-image {
+    flex: 1;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.team-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.team-image {
+    max-width: 600px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Reviews */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.review-card {
+    background-color: var(--white);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    text-align: left;
+    position: relative;
+}
+
+.review-card::before {
+    content: "“";
+    font-size: 4rem;
+    color: #ffe4e1;
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-family: serif;
+}
+
+.review-text {
+    font-style: italic;
+    margin-bottom: 15px;
+    z-index: 1;
+    position: relative;
+}
+
+.review-author {
+    font-weight: bold;
+    color: var(--primary-color);
+    text-align: right;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .header-content {
@@ -297,5 +373,10 @@ address {
 
     .hero-section h2 {
         font-size: 2rem;
+    }
+
+    .about-container {
+        flex-direction: column;
+        text-align: center;
     }
 }
